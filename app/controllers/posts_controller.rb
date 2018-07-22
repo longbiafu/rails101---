@@ -20,6 +20,20 @@ class PostsController < ApplicationController
     end
   end
 
+  def edit
+    @group = Group.find(params[:group_id])
+    @post = Post.find(params[:id])
+  end
+
+  def update
+    @group = Group.find(params[:group_id])
+    if @post = Post.update(post_params)
+      flash[:notice] = "Success update"
+      redirect_to account_posts_path
+    else
+      render :edit
+    end
+  end
 
   private
 
